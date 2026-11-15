@@ -10,13 +10,20 @@
   --border: #e4e4e0;
   --border-strong: #8c8c86;
   --text: #141413;
-  --text-muted: #6b6b66;
+  --text-muted: #55554f;
   --primary: #1f4fd8;
   --on-primary: #ffffff;
   --accent: #b45309;
   --success: #1a7f4b;
   --warning: #8a5a00;
   --error: #c0362c;
+
+  /* One colour per game, used in every chart */
+  --c-paintball: #1f4fd8;
+  --c-mma: #c2410c;
+  --c-centipede: #15803d;
+  --c-thrust: #c2255c;
+  --c-tennis: #6d3fe0;
 
   /* Typography */
   --font-sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -70,13 +77,18 @@
     --border: #2a2c31;
     --border-strong: #6e727a;
     --text: #f1f1ef;
-    --text-muted: #a0a3aa;
-    --primary: #8faeff;
+    --text-muted: #b9bcc4;
+    --primary: #7aa2ff;
     --on-primary: #0e0f11;
     --accent: #f2b25c;
     --success: #5bd08f;
     --warning: #e3b341;
     --error: #ff8a80;
+    --c-paintball: #7aa2ff;
+    --c-mma: #ffa94d;
+    --c-centipede: #51cf66;
+    --c-thrust: #f783ac;
+    --c-tennis: #b197fc;
     --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.5);
   }
 }
@@ -89,13 +101,18 @@
   --border: #2a2c31;
   --border-strong: #6e727a;
   --text: #f1f1ef;
-  --text-muted: #a0a3aa;
-  --primary: #8faeff;
+  --text-muted: #b9bcc4;
+  --primary: #7aa2ff;
   --on-primary: #0e0f11;
   --accent: #f2b25c;
   --success: #5bd08f;
   --warning: #e3b341;
   --error: #ff8a80;
+  --c-paintball: #7aa2ff;
+  --c-mma: #ffa94d;
+  --c-centipede: #51cf66;
+  --c-thrust: #f783ac;
+  --c-tennis: #b197fc;
   --shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.5);
 }
 

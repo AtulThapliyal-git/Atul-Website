@@ -116,6 +116,24 @@ Added at the owner's request; the site now leans expressive, so add nothing furt
 - **Mouse only**: a cursor ring and magnetic buttons. Touch devices skip these and the tilt.
 - **Reduced motion**: all of the above is disabled and everything shows in its final state.
 
+## Game colours
+
+Each game has one colour, used for it in every chart, the ticker and its card number. Never use these for anything else.
+
+| Token | Light | Dark | Game |
+| --- | --- | --- | --- |
+| `--c-paintball` | `#1F4FD8` | `#7AA2FF` | Paintball Arena VR |
+| `--c-mma` | `#C2410C` | `#FFA94D` | MMA Cage Conquest |
+| `--c-centipede` | `#15803D` | `#51CF66` | Centipede VR |
+| `--c-thrust` | `#C2255C` | `#F783AC` | Thrust Hunter |
+| `--c-tennis` | `#6D3FE0` | `#B197FC` | Tennis Freak |
+
+All pass 4.5:1 on `--bg` and `--surface` in their mode, and every coloured mark also carries a text label. Other changes in the colour pass: `--text-muted` is now `#55554F` (light) and `#B9BCC4` (dark), dark `--primary` is `#7AA2FF`, and each section title has a short `--primary` bar on its divider.
+
+## AI section
+
+"AI in my workflow" sits after "How I ship a game": three cards (research and planning, development, 3D art) with drawn line icons, then a result strip (faster completion, smoother workflow, on-time delivery). Keep the copy to what is true of the owner's practice; do not name tools or add figures he hasn't supplied.
+
 ## Data graphics
 
 All graphics use real figures from the store dashboards and animate once when they scroll into view.
