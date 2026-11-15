@@ -227,12 +227,16 @@ dialog.lb[open]{animation:fade var(--dur-base) var(--ease)}
 .split h3{font:var(--text-h3)}
 .split .meta{margin-top:var(--space-1)}
 .key{margin-top:var(--space-6);display:grid;gap:var(--space-3)}
-.key li{display:grid;grid-template-columns:12px minmax(0,1fr) auto 56px;gap:var(--space-3);align-items:center}
+.key li{display:grid;grid-template-columns:12px minmax(0,1fr) auto 64px;gap:var(--space-3);align-items:center}
 .key i{width:12px;height:12px;border-radius:2px;background:var(--c)}
 .key a{color:var(--text);text-decoration:none;font-weight:500}
 .key a:hover{text-decoration:underline}
 .key b{font:var(--text-meta);font-size:.9375rem;color:var(--text);font-variant-numeric:tabular-nums}
 .key span{font:var(--text-meta);color:var(--text-muted);text-align:right;font-variant-numeric:tabular-nums}
+.key li.other{padding-top:var(--space-3);border-top:1px solid var(--border)}
+.key li.other i{background:none;border:1.5px dashed var(--border-strong)}
+.keynote{font:var(--text-small);color:var(--text-muted);margin-top:var(--space-3);max-width:60ch}
+.keynote:empty{display:none}
 @media(max-width:720px){.split{grid-template-columns:minmax(0,1fr);gap:var(--space-6);padding:var(--space-6);margin-top:var(--space-12)}.donut{width:160px;height:160px}}
 
 /* ---------- how I ship a game ---------- */
@@ -298,6 +302,27 @@ dialog.lb[open]{animation:fade var(--dur-base) var(--ease)}
 .skillgrp li::before{content:"";flex:none;width:16px;height:2px;background:var(--primary);transform-origin:0 50%}
 .js .skillgrp li::before{transform:scaleX(0)}
 .js .skillgrp.in li::before{transform:scaleX(1);transition:transform 500ms var(--ease);transition-delay:calc(var(--k)*45ms + 350ms)}
+
+/* ---------- AI in my workflow ---------- */
+.aigrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gap)}
+.aicard{padding:var(--space-6);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:var(--radius-md);background:var(--bg)}
+.aicard svg{width:40px;height:40px;overflow:visible}
+.aicard svg path{fill:none;stroke:var(--c);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1}
+.js .aicard svg path{stroke-dashoffset:1}
+.js .aicard.in svg path{stroke-dashoffset:0;transition:stroke-dashoffset 1300ms var(--ease) 350ms}
+.aicard .meta{margin-top:var(--space-4);color:var(--c)}
+.aicard h3{font:var(--text-h3);margin-top:var(--space-1)}
+.aicard p:last-child{color:var(--text-muted);margin-top:var(--space-2)}
+.aiout{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));align-items:center;gap:var(--space-6);margin-top:var(--space-8);padding:var(--space-6);background:var(--surface);border-radius:var(--radius-md)}
+body.alt .aiout{background:var(--bg)}
+.aiout li.lab{font:var(--text-meta);color:var(--text-muted)}
+.aiout li{display:flex;align-items:center;gap:var(--space-3);font:var(--text-h3)}
+.aiout svg{flex:none;width:24px;height:24px}
+.aiout svg path{fill:none;stroke:var(--c-centipede);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1}
+.js .aiout svg path{stroke-dashoffset:1}
+.js .aiout.in svg path{stroke-dashoffset:0;transition:stroke-dashoffset 500ms var(--ease);transition-delay:calc(var(--i)*220ms + 300ms)}
+@media(max-width:900px){.aigrid{grid-template-columns:minmax(0,1fr)}.aiout{grid-template-columns:minmax(0,1fr);gap:var(--space-3)}}
+@media(prefers-reduced-motion:reduce){.js .aicard svg path,.js .aiout svg path{stroke-dashoffset:0!important}}
 
 /* ---------- hero trailer ---------- */
 .hv{position:relative;background:#000}
@@ -421,6 +446,30 @@ body.alt{--page:var(--surface)}
   .journey::after{transform:scaleY(1)}
   .progress{display:none}
 }
+/* ---------- colour pass: one colour per game, stronger accents ---------- */
+#g-paintball{--c:var(--c-paintball)}#g-mma{--c:var(--c-mma)}#g-centipede{--c:var(--c-centipede)}#g-thrust{--c:var(--c-thrust)}#g-tennis{--c:var(--c-tennis)}
+.game .num{color:var(--c,var(--text))}
+.game .num span{color:var(--text-muted)}
+.brow .fill{background:var(--c,var(--text))}
+.brow .bn::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:8px;vertical-align:1px}
+.ret .l,.ret .l.hi{stroke:var(--c,var(--border-strong));stroke-width:2}
+.ret .l.hi{stroke-width:3.5}
+.ret .pt,.ret .pt.hi{fill:var(--c,var(--border-strong))}
+.ret .end,.ret .end.hi{fill:var(--c,var(--text-muted))}
+.retkey i,.retkey .hi i{background:var(--c,var(--border-strong));height:3px;border-radius:2px}
+.ticker span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c);align-self:center}
+.sechead::before{content:"";position:absolute;left:0;bottom:0;width:56px;height:3px;background:var(--primary);border-radius:2px;z-index:1}
+.stage .proof b{color:var(--primary)}
+.strip .area{fill-opacity:.14}
+
+
+/* retention legend: five even columns, name on top, figures beneath */
+.retkey{grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-4) var(--space-6);padding-top:var(--space-4);border-top:1px solid var(--border)}
+.retkey li{grid-template-columns:16px minmax(0,1fr);column-gap:var(--space-2);row-gap:2px;align-items:center}
+.retkey a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.retkey b{grid-column:2;font-weight:400}
+@media(max-width:1000px){.retkey{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.retkey{grid-template-columns:minmax(0,1fr);gap:var(--space-2)}.retkey li{grid-template-columns:16px minmax(0,1fr) auto}.retkey b{grid-column:auto}}
 </style>
 </head>
 <body>
@@ -486,6 +535,7 @@ body.alt{--page:var(--surface)}
       <h3>Where the VR installs came from</h3>
       <p class="meta">Meta Quest · Organic · October 2026</p>
       <ul class="key" id="donutKey"></ul>
+      <p class="keynote" id="donutNote"></p>
     </div>
   </div>
 </div>
@@ -595,6 +645,44 @@ body.alt{--page:var(--surface)}
   </div>
 </section>
 
+<section id="ai">
+  <div class="wrap">
+    <div class="sechead">
+      <div>
+        <h2>AI in my workflow</h2>
+        <p>I use AI as an assistant in project management, in development and in my 3D art. It takes on research and support work, so tasks finish faster and the project runs more smoothly.</p>
+      </div>
+      <p class="meta">Research · Development · Art</p>
+    </div>
+    <div class="aigrid">
+      <article class="aicard" style="--c:var(--c-paintball)">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M27 17a10 10 0 1 1-20 0a10 10 0 0 1 20 0M24.5 24.5L34 34"/></svg>
+        <p class="meta">As a Project Manager</p>
+        <h3>Research and planning</h3>
+        <p>AI helps me research and get answers quickly, so planning decisions don't wait and the schedule holds.</p>
+      </article>
+      <article class="aicard" style="--c:var(--c-tennis)">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M14 11L5 20l9 9M26 11l9 9-9 9M23 7l-6 26"/></svg>
+        <p class="meta">With the team</p>
+        <h3>Development</h3>
+        <p>We use AI as a helping hand during development, which keeps work moving and gets tasks completed sooner.</p>
+      </article>
+      <article class="aicard" style="--c:var(--c-mma)">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M20 4l14 8v16l-14 8-14-8V12zM20 20v16M20 20l14-8M20 20L6 12"/></svg>
+        <p class="meta">As a 3D Artist</p>
+        <h3>3D art</h3>
+        <p>AI isn't only for code. I use it in my art workflow too, for research and support while I build assets.</p>
+      </article>
+    </div>
+    <ul class="aiout" id="aiout">
+      <li class="lab">The result</li>
+      <li style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 12.5l5 5L20 6.5"/></svg>Faster completion</li>
+      <li style="--i:1"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 12.5l5 5L20 6.5"/></svg>Smoother workflow</li>
+      <li style="--i:2"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 12.5l5 5L20 6.5"/></svg>On-time delivery</li>
+    </ul>
+  </div>
+</section>
+
 <section id="journey">
   <div class="wrap">
     <div class="sechead">
@@ -694,10 +782,11 @@ const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
 const GAMES = [
   { id:'paintball', n:'Paintball Arena VR', p:'Quest, free-to-play', inst:71.1, rate:4.5, w1:20.2, d30:2.1 },
   { id:'mma', n:'MMA Cage Conquest', p:'Quest, premium', inst:15.1, rate:4.1, w1:28.7, d30:3.2 },
-  { id:'thrust', n:'Thrust Hunter', p:'Quest, free + IAP', inst:null, rate:4.0, w1:30.3, d30:4.5 },
+  { id:'thrust', n:'Thrust Hunter', p:'Quest, free + IAP', inst:null, mau:12.9, rate:4.0, w1:30.3, d30:4.5 },
   { id:'tennis', n:'Tennis Freak', p:'Android, free PvP', inst:10, plus:true, rate:4.4, w1:35.0, d30:10.5 },
   { id:'centipede', n:'Centipede VR', p:'Quest, early access', inst:0.612, rate:4.7, w1:52.6, d30:7.9 },
 ];
+const GC = {paintball:'var(--c-paintball)', mma:'var(--c-mma)', centipede:'var(--c-centipede)', thrust:'var(--c-thrust)', tennis:'var(--c-tennis)'};
 const fmtK = v => v >= 1 ? v.toFixed(1).replace(/\.0$/,'') + 'K' : Math.round(v * 1000).toString();
 const METRICS = [
   { k:'inst', l:'Installs', max:75, fmt:(v,g) => v == null ? 'n/a' : fmtK(v) + (g.plus ? '+' : ''), note:'Installs to date. Thrust Hunter reports monthly players instead (12.9K at peak), so it has no install bar.' },
@@ -708,7 +797,7 @@ const METRICS = [
 (() => {
   const tabs = $('tabs'), bars = $('bars');
   const rows = GAMES.map(g => {
-    const r = document.createElement('div'); r.className = 'brow'; r.style.setProperty('--i', GAMES.indexOf(g));
+    const r = document.createElement('div'); r.className = 'brow'; r.style.setProperty('--i', GAMES.indexOf(g)); r.style.setProperty('--c', GC[g.id]);
     r.innerHTML = `<a class="bn" href="#g-${g.id}">${esc(g.n)}<small>${esc(g.p)}</small></a><span class="track"><span class="fill"></span></span><span class="bv"></span>`;
     bars.appendChild(r); return r;
   });
@@ -782,17 +871,18 @@ const redraws = [];
   const el = $('retchart'), H = 260, top = 16, bot = 30;
   const order = GAMES.map((g, i) => i).sort((p, q) => GAMES[q].w1 - GAMES[p].w1), best = order[0];
   const y = v => top + (H - top - bot) * (1 - Math.log10(v) / 2);
-  $('retkey').innerHTML = order.map(i => { const g = GAMES[i]; return `<li class="${i === best ? 'hi' : ''}"><i></i><a class="quiet" href="#g-${g.id}">${esc(g.n)}</a><b>${g.w1}% → ${g.d30}%</b></li>`; }).join('');
+  $('retkey').innerHTML = order.map(i => { const g = GAMES[i]; return `<li class="${i === best ? 'hi' : ''}" style="--c:${GC[g.id]}"><i></i><a class="quiet" href="#g-${g.id}">${esc(g.n)}</a><b>${g.w1}% → ${g.d30}%</b></li>`; }).join('');
   function draw(){
     const W = el.clientWidth; if (!W) return;
     const wide = W >= 620, L = 44, R = wide ? 170 : 12, x = dday => L + (W - L - R) * dday / 30;
     let h = `<svg viewBox="0 0 ${W} ${H}" height="${H}">`;
     [100, 10, 1].forEach(v => h += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}%</text>`);
-    [[0, 'Install'], [7, 'Week 1'], [30, 'Day 30']].forEach(([dd, t], k) => h += `<text class="ax" x="${x(dd)}" y="${H - 6}" text-anchor="${k === 0 ? 'start' : k === 2 ? 'end' : 'middle'}">${t}</text>`);
+    (wide ? [[0, 'Install'], [7, 'Week 1'], [30, 'Day 30']] : [[0, 'Day 0'], [7, '7'], [30, 'Day 30']]).forEach(([dd, t], k) => h += `<text class="ax" x="${x(dd)}" y="${H - 6}" text-anchor="${k === 0 ? 'start' : k === 2 ? 'end' : 'middle'}">${t}</text>`);
     order.slice().reverse().forEach((i, k) => {
       const g = GAMES[i], hi = i === best ? ' hi' : '';
-      h += `<polyline class="l${hi}" pathLength="1" style="--i:${k}" points="${x(0)},${y(100)} ${x(7)},${y(g.w1)} ${x(30)},${y(g.d30)}"/><circle class="pt${hi}" cx="${x(7)}" cy="${y(g.w1)}" r="3"/><circle class="pt${hi}" cx="${x(30)}" cy="${y(g.d30)}" r="3"/>`;
-      if (wide) h += `<text class="end${hi}" x="${x(30) + 10}" y="${y(g.d30) + 4}">${esc(g.n)} ${g.d30}%</text>`;
+      const c = GC[g.id];
+      h += `<polyline class="l${hi}" pathLength="1" style="--i:${k};--c:${c}" points="${x(0)},${y(100)} ${x(7)},${y(g.w1)} ${x(30)},${y(g.d30)}"/><circle class="pt${hi}" style="--c:${c}" cx="${x(7)}" cy="${y(g.w1)}" r="3.5"/><circle class="pt${hi}" style="--c:${c}" cx="${x(30)}" cy="${y(g.d30)}" r="3.5"/>`;
+      if (wide) h += `<text class="end${hi}" style="--c:${c}" x="${x(30) + 10}" y="${y(g.d30) + 4}">${esc(g.n)} ${g.d30}%</text>`;
     });
     el.innerHTML = h + `</svg>`;
   }
@@ -801,11 +891,11 @@ const redraws = [];
 let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => redraws.forEach(f => f()), 150); });
 
 /* ticker: game names and platforms */
-$('ticker').innerHTML = [0, 1].map(() => GAMES.map(g => `<span>${esc(g.n)}<small>${esc(g.p)}</small></span>`).join('')).join('');
+$('ticker').innerHTML = [0, 1].map(() => GAMES.map(g => `<span style="--c:${GC[g.id]}">${esc(g.n)}<small>${esc(g.p)}</small></span>`).join('')).join('');
 
 /* install split donut: VR titles that report installs */
 (() => {
-  const C = 2 * Math.PI * 54, cols = {paintball:'var(--primary)', mma:'var(--accent)', centipede:'var(--text)'};
+  const C = 2 * Math.PI * 54, cols = GC;
   const vr = GAMES.filter(g => g.inst && g.id !== 'tennis'), tot = vr.reduce((a, g) => a + g.inst, 0);
   let cum = 0;
   vr.forEach((g, i) => {
@@ -813,6 +903,11 @@ $('ticker').innerHTML = [0, 1].map(() => GAMES.map(g => `<span>${esc(g.n)}<small
     $('donutSegs').insertAdjacentHTML('beforeend', `<circle class="seg" cx="70" cy="70" r="54" stroke-dashoffset="${-cum}" style="--c:${cols[g.id]};--len:${len.toFixed(1)};--i:${i}"/>`);
     $('donutKey').insertAdjacentHTML('beforeend', `<li><i style="--c:${cols[g.id]}"></i><a href="#g-${g.id}">${esc(g.n)}</a><b>${fmtK(g.inst)}</b><span>${share < .01 ? '<1' : Math.round(share * 100)}%</span></li>`);
     cum += share * C;
+  });
+  /* games that report monthly players, not installs, are listed under the ring, not inside it */
+  GAMES.filter(g => g.mau && !g.inst).forEach(g => {
+    $('donutKey').insertAdjacentHTML('beforeend', `<li class="other"><i style="border-color:${GC[g.id]}"></i><a href="#g-${g.id}">${esc(g.n)}</a><b>${fmtK(g.mau)}</b><span>/month</span></li>`);
+    $('donutNote').textContent = `${g.n} is counted in monthly players (${fmtK(g.mau)} at its peak), not installs, so it sits outside the ring.`;
   });
 })();
 
@@ -831,7 +926,7 @@ const PIPELINE = [
 
 /* SKILLS — edit these lists to add or remove a skill */
 const SKILLS = [
-  { t:"Core skills", items:["Project management","Game development","Creative design","Team leadership","UI/UX design"] },
+  { t:"Core skills", items:["Project management","Game development","Creative design","Team leadership","UI/UX design","AI-assisted workflows"] },
   { t:"Production", items:["Game project management","Mobile game production (Android and iOS)","VR/XR development and publishing","3D art and asset production","Store deployment and live ops","Performance optimisation (FPS, crashes)","Monetisation and gameplay analytics","AWS GameLift and EC2 (basic experience)","Cross-functional team coordination"] },
 ];
 $('skillgrid').innerHTML = SKILLS.map(g => `<div class="skillgrp"><h3>${esc(g.t)}<span>${g.items.length}</span></h3><ul>${g.items.map((x, k) => `<li style="--k:${k}">${esc(x)}</li>`).join('')}</ul></div>`).join('');
@@ -979,13 +1074,13 @@ function countUp(el){
 
 /* scroll reveals and one-shot graphics */
 (() => {
-  const groups = ['.stats > div', '.split', '.sechead', '.board', '.game', '.rec li', '.stage', '.mix', '.journey > li', '.pipewrap', '.skillgrp', '.art', '.also', '.contact .wrap > *'];
+  const groups = ['.stats > div', '.split', '.sechead', '.board', '.game', '.rec li', '.stage', '.aicard', '.mix', '.journey > li', '.pipewrap', '.skillgrp', '.art', '.also', '.contact .wrap > *'];
   const els = [];
   groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     const sibs = [...el.parentElement.children].filter(x => x.matches(sel));
     el.classList.add('rv'); el.style.setProperty('--d', Math.min(sibs.indexOf(el), 5) * 70 + 'ms'); els.push(el);
   }));
-  const once = [$('donut'), $('flow'), $('strip'), $('ret'), $('pipe')];
+  const once = [$('donut'), $('flow'), $('strip'), $('ret'), $('pipe'), $('aiout')];
   if (!('IntersectionObserver' in window)) { [...els, ...once].forEach(el => el.classList.add('in')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
@@ -998,7 +1093,7 @@ function countUp(el){
   /* page shade shifts while the process and skills sections are centred */
   const mids = new Set();
   const bg = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? mids.add(e.target) : mids.delete(e.target)); document.body.classList.toggle('alt', mids.size > 0); }, {rootMargin:'-45% 0px -45% 0px'});
-  ['process', 'skills'].forEach(id => bg.observe($(id)));
+  ['process', 'ai', 'skills'].forEach(id => bg.observe($(id)));
 })();
 
 /* hero trailer: plays muted on a loop while on screen; visitors can pause it or turn sound on */
