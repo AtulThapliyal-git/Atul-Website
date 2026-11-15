@@ -112,9 +112,13 @@ Added at the owner's request; the site now leans expressive, so add nothing furt
 - **Hero**: headline words rise from a mask, a pen stroke draws under "3D Artist", a platform word rotates, and the key art drifts slightly on scroll.
 - **Lines**: section dividers draw left to right; a wireframe draws beside the 3D art title; the career line and retention curves draw once.
 - **Games**: art wipes in from the left, cards tilt toward the mouse, and corner brackets appear on hover (also on art tiles).
-- **Other**: a ticker of game names, chart rows slide when re-sorted, skill tags cascade, the page shade shifts on the process and skills sections.
+- **Other**: a ticker of game names, chart rows slide when re-sorted, skill tags cascade.
 - **Mouse only**: a cursor ring and magnetic buttons. Touch devices skip these and the tilt.
 - **Reduced motion**: all of the above is disabled and everything shows in its final state.
+
+## Page background
+
+Every section sits on `--bg`. Do not shift the page to `--surface` for individual sections: on the dark theme it lowers contrast and reads as washed out. `--surface` is for cards and panels only.
 
 ## Game colours
 

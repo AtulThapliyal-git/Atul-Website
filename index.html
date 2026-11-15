@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atul Thapliyal — 3D Artist and Project Manager, games and XR</title>
-<meta name="description" content="Atul Thapliyal, 3D Artist and Project Manager for VR and mobile games. Five live titles on Meta Quest and Google Play, 86.5K+ organic VR installs, selected for IGDC 2026 Indie 60.">
+<meta name="description" content="Atul Thapliyal, 3D Artist and Project Manager for VR and mobile games. Five live titles on Meta Quest and Google Play, 189K+ organic VR installs, selected for IGDC 2026 Indie 60.">
 <meta property="og:title" content="Atul Thapliyal — 3D Artist and Project Manager, games and XR">
 <meta property="og:description" content="Five live games on Meta Quest and mobile. 9+ years in games. 3D Artist and Project Manager.">
 <meta property="og:type" content="website">
@@ -314,7 +314,6 @@ dialog.lb[open]{animation:fade var(--dur-base) var(--ease)}
 .aicard h3{font:var(--text-h3);margin-top:var(--space-1)}
 .aicard p:last-child{color:var(--text-muted);margin-top:var(--space-2)}
 .aiout{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));align-items:center;gap:var(--space-6);margin-top:var(--space-8);padding:var(--space-6);background:var(--surface);border-radius:var(--radius-md)}
-body.alt .aiout{background:var(--bg)}
 .aiout li.lab{font:var(--text-meta);color:var(--text-muted)}
 .aiout li{display:flex;align-items:center;gap:var(--space-3);font:var(--text-h3)}
 .aiout svg{flex:none;width:24px;height:24px}
@@ -334,7 +333,6 @@ body.alt .aiout{background:var(--bg)}
 
 /* ---------- more motion ---------- */
 body{--page:var(--bg);background:var(--page);transition:background-color 600ms var(--ease)}
-body.alt{--page:var(--surface)}
 
 /* intro: the name draws once per visit */
 #intro{display:none}
@@ -522,18 +520,18 @@ body.alt{--page:var(--surface)}
   </figure>
   <dl class="stats" aria-label="Highlights">
     <div><dt>5</dt><dd>live games on Meta Quest and Google Play</dd></div>
-    <div><dt>86.5K+</dt><dd>organic VR installs, no paid ads</dd></div>
+    <div><dt>189K+</dt><dd>organic VR installs, no paid ads</dd></div>
     <div><dt>4.7★</dt><dd>Centipede VR store rating</dd></div>
     <div><dt>9+ yrs</dt><dd>in game production and 3D art</dd></div>
   </dl>
   <div class="split">
     <div class="donut" id="donut" role="img" aria-label="Share of VR installs by game">
       <svg viewBox="0 0 140 140" aria-hidden="true"><circle class="trk" cx="70" cy="70" r="54"/><g id="donutSegs"></g></svg>
-      <div class="mid"><b>86.5K+</b><span>VR installs</span></div>
+      <div class="mid"><b id="donutTotal">189K+</b><span>VR installs</span></div>
     </div>
     <div>
       <h3>Where the VR installs came from</h3>
-      <p class="meta">Meta Quest · Organic · October 2026</p>
+      <p class="meta">Meta Quest · Organic · Lifetime installs</p>
       <ul class="key" id="donutKey"></ul>
       <p class="keynote" id="donutNote"></p>
     </div>
@@ -597,8 +595,8 @@ body.alt{--page:var(--surface)}
         <div class="shot"><img src="img/thrust-hunter.jpg" srcset="img/thrust-hunter-960.jpg 960w, img/thrust-hunter.jpg 1600w" sizes="(max-width: 720px) 100vw, 548px" width="1600" height="900" alt="Thrust Hunter: racing cars on a desert track" loading="lazy"></div>
         <p class="meta">Project Manager · Meta Quest · Free with in-app purchases</p>
         <h3>Thrust Hunter</h3>
-        <p class="num">12.9K<span>peak monthly players</span></p>
-        <p>A VR racer. Adding live multiplayer races drove its peak month, and in-app purchases are now live.</p>
+        <p class="num">102.6K<span>installs</span></p>
+        <p>A VR racer and our most-installed game. Adding live multiplayer races drove its peak month of 12.9K players, and in-app purchases are now live.</p>
       </article>
       <article class="game" id="g-tennis">
         <!-- TENNIS IMAGE: save the trailer cover as img/tennis-freak.jpg to serve it locally; until then it loads from YouTube -->
@@ -610,7 +608,7 @@ body.alt{--page:var(--surface)}
         <a class="more ext" href="https://play.google.com/store/apps/details?id=com.Shaurya.TennisGame" target="_blank" rel="noopener">View on Google Play</a>
       </article>
     </div>
-    <p class="src">Figures from Meta Horizon and Google Play Console dashboards, October 2026.</p>
+    <p class="src">Figures from Meta Horizon and Google Play Console dashboards, October and November 2026.</p>
   </div>
 </section>
 
@@ -782,14 +780,14 @@ const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
 const GAMES = [
   { id:'paintball', n:'Paintball Arena VR', p:'Quest, free-to-play', inst:71.1, rate:4.5, w1:20.2, d30:2.1 },
   { id:'mma', n:'MMA Cage Conquest', p:'Quest, premium', inst:15.1, rate:4.1, w1:28.7, d30:3.2 },
-  { id:'thrust', n:'Thrust Hunter', p:'Quest, free + IAP', inst:null, mau:12.9, rate:4.0, w1:30.3, d30:4.5 },
+  { id:'thrust', n:'Thrust Hunter', p:'Quest, free + IAP', inst:102.6, rate:4.0, w1:30.3, d30:4.5 },
   { id:'tennis', n:'Tennis Freak', p:'Android, free PvP', inst:10, plus:true, rate:4.4, w1:35.0, d30:10.5 },
   { id:'centipede', n:'Centipede VR', p:'Quest, early access', inst:0.612, rate:4.7, w1:52.6, d30:7.9 },
 ];
 const GC = {paintball:'var(--c-paintball)', mma:'var(--c-mma)', centipede:'var(--c-centipede)', thrust:'var(--c-thrust)', tennis:'var(--c-tennis)'};
 const fmtK = v => v >= 1 ? v.toFixed(1).replace(/\.0$/,'') + 'K' : Math.round(v * 1000).toString();
 const METRICS = [
-  { k:'inst', l:'Installs', max:75, fmt:(v,g) => v == null ? 'n/a' : fmtK(v) + (g.plus ? '+' : ''), note:'Installs to date. Thrust Hunter reports monthly players instead (12.9K at peak), so it has no install bar.' },
+  { k:'inst', l:'Installs', max:110, fmt:(v,g) => v == null ? 'n/a' : fmtK(v) + (g.plus ? '+' : ''), note:'Lifetime installs per game.' },
   { k:'rate', l:'Rating', min:3.5, max:5, fmt:v => v.toFixed(1) + '★', note:'Store rating out of 5. The bars start at 3.5 so the differences are visible.' },
   { k:'w1', l:'Week-1 retention', max:60, fmt:v => v + '%', note:'Share of players still playing 7 days after install, best cohort per game.' },
   { k:'d30', l:'Day-30 retention', max:12, fmt:v => v + '%', note:'Share of players still playing 30 days after install, best cohort per game.' },
@@ -896,7 +894,8 @@ $('ticker').innerHTML = [0, 1].map(() => GAMES.map(g => `<span style="--c:${GC[g
 /* install split donut: VR titles that report installs */
 (() => {
   const C = 2 * Math.PI * 54, cols = GC;
-  const vr = GAMES.filter(g => g.inst && g.id !== 'tennis'), tot = vr.reduce((a, g) => a + g.inst, 0);
+  const vr = GAMES.filter(g => g.inst && g.id !== 'tennis').sort((a, b) => b.inst - a.inst), tot = vr.reduce((a, g) => a + g.inst, 0);
+  $('donutTotal').textContent = Math.floor(tot) + 'K+';
   let cum = 0;
   vr.forEach((g, i) => {
     const share = g.inst / tot, len = Math.max(3, share * C - 2);
@@ -1089,11 +1088,6 @@ function countUp(el){
     if (e.target.id === 'flow') e.target.querySelectorAll('.proof b').forEach((b, i) => setTimeout(() => countUp(b), i * 400 + 300));
   }), {threshold:.15, rootMargin:'0px 0px -5% 0px'});
   [...els, ...once].forEach(el => io.observe(el));
-
-  /* page shade shifts while the process and skills sections are centred */
-  const mids = new Set();
-  const bg = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? mids.add(e.target) : mids.delete(e.target)); document.body.classList.toggle('alt', mids.size > 0); }, {rootMargin:'-45% 0px -45% 0px'});
-  ['process', 'ai', 'skills'].forEach(id => bg.observe($(id)));
 })();
 
 /* hero trailer: plays muted on a loop while on screen; visitors can pause it or turn sound on */
