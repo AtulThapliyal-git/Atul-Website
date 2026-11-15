@@ -299,6 +299,14 @@ dialog.lb[open]{animation:fade var(--dur-base) var(--ease)}
 .js .skillgrp li::before{transform:scaleX(0)}
 .js .skillgrp.in li::before{transform:scaleX(1);transition:transform 500ms var(--ease);transition-delay:calc(var(--k)*45ms + 350ms)}
 
+/* ---------- hero trailer ---------- */
+.hv{position:relative;background:#000}
+.hv video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#000}
+.hvc{position:absolute;right:var(--space-3);bottom:var(--space-3);display:flex;gap:var(--space-2)}
+.hvc button{height:36px;padding:0 14px;border-radius:var(--radius-pill);border:1px solid rgb(255 255 255 / .35);background:rgb(0 0 0 / .6);color:#fff;font:500 .875rem/1 var(--font-sans)}
+.hvc button:hover{background:rgb(0 0 0 / .8)}
+.hvc button:focus-visible{outline-color:#fff}
+
 /* ---------- more motion ---------- */
 body{--page:var(--bg);background:var(--page);transition:background-color 600ms var(--ease)}
 body.alt{--page:var(--surface)}
@@ -451,8 +459,17 @@ body.alt{--page:var(--surface)}
     <a class="btn secondary" href="resume.pdf" target="_blank" rel="noopener" data-resume hidden>Résumé (PDF)</a>
   </div>
   <figure>
-    <div class="frame"><img src="img/centipede-key.jpg" srcset="img/centipede-key-960.jpg 960w, img/centipede-key.jpg 1600w" sizes="(max-width: 1168px) 100vw, 1120px" width="1600" height="1195" alt="Centipede VR key art: an armoured soldier faces a giant centipede creature under a crescent moon" fetchpriority="high"></div>
-    <figcaption class="meta">Centipede VR · Selected for IGDC 2026 Indie 60</figcaption>
+    <div class="frame hv">
+      <!-- HERO TRAILER: img/centipede-trailer.mp4 is a compressed 720p copy; the key art shows until it loads and for visitors who turn motion off -->
+      <video id="heroVid" muted loop playsinline preload="metadata" poster="img/centipede-key.jpg" width="1280" height="720" aria-label="Centipede VR trailer">
+        <source src="img/centipede-trailer.mp4" type="video/mp4">
+      </video>
+      <div class="hvc">
+        <button id="hvPlay" type="button">Play</button>
+        <button id="hvSound" type="button" aria-pressed="false">Sound on</button>
+      </div>
+    </div>
+    <figcaption class="meta">Centipede VR trailer · Selected for IGDC 2026 Indie 60</figcaption>
   </figure>
   <dl class="stats" aria-label="Highlights">
     <div><dt>5</dt><dd>live games on Meta Quest and Google Play</dd></div>
@@ -982,6 +999,19 @@ function countUp(el){
   const mids = new Set();
   const bg = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? mids.add(e.target) : mids.delete(e.target)); document.body.classList.toggle('alt', mids.size > 0); }, {rootMargin:'-45% 0px -45% 0px'});
   ['process', 'skills'].forEach(id => bg.observe($(id)));
+})();
+
+/* hero trailer: plays muted on a loop while on screen; visitors can pause it or turn sound on */
+(() => {
+  const v = $('heroVid'), bp = $('hvPlay'), bs = $('hvSound'); let userPaused = reduce;
+  const sync = () => { bp.textContent = v.paused ? 'Play' : 'Pause'; bs.textContent = v.muted ? 'Sound on' : 'Sound off'; bs.setAttribute('aria-pressed', !v.muted); };
+  const play = () => v.play().catch(() => {}).then(sync);
+  bp.onclick = () => { if (v.paused) { userPaused = false; play(); } else { userPaused = true; v.pause(); } };
+  bs.onclick = () => { v.muted = !v.muted; if (!v.muted && v.paused) { userPaused = false; play(); } sync(); };
+  v.addEventListener('play', sync); v.addEventListener('pause', sync);
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { if (!userPaused) play(); } else v.pause(); }), {threshold:.25}).observe(v);
+  else if (!userPaused) play();
+  sync();
 })();
 
 /* rotating platform word in the hero */
